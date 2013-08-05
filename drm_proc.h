@@ -97,7 +97,7 @@ struct proc_dir_entry *DRM(proc_init)(drm_device_t *dev, int minor,
 
         if (!minor)
         {
-            root = KCL_create_proc_dir(NULL, "dri", S_IFDIR);
+            root = KCL_create_proc_dir(NULL, "dri", S_IRUGO|S_IXUGO);
         }
         if (!root) 
         {
@@ -106,7 +106,7 @@ struct proc_dir_entry *DRM(proc_init)(drm_device_t *dev, int minor,
         }
 
         sprintf(name, "%d", minor);
-        *dev_root = KCL_create_proc_dir(root, name, S_IFDIR);
+        *dev_root = KCL_create_proc_dir(root, name, S_IRUGO|S_IXUGO);
         if (!*dev_root) 
         {
             DRM_ERROR("Cannot create /proc/ati/%s\n", name);

@@ -821,7 +821,7 @@ static struct proc_dir_entry *firegl_proc_init( device_t *dev,
     KCL_DEBUG1(FN_FIREGL_PROC, "minor %d, proc_list 0x%08lx\n", minor, (unsigned long)proc_list);
     if (!minor)
     {
-        root = KCL_create_proc_dir(NULL, "ati", S_IFDIR);
+        root = KCL_create_proc_dir(NULL, "ati", S_IRUGO|S_IXUGO);
     }
 
     if (!root)
@@ -847,7 +847,7 @@ static struct proc_dir_entry *firegl_proc_init( device_t *dev,
     }
 
     sprintf(name, "%d", minor);
-    *dev_root = KCL_create_proc_dir(root, name, S_IFDIR);
+    *dev_root = KCL_create_proc_dir(root, name, S_IRUGO|S_IXUGO);
     if (!*dev_root) {
         KCL_remove_proc_dir_entry(root, "major");
         KCL_remove_proc_dir_entry(NULL, "ati");
